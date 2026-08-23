@@ -4,7 +4,7 @@ use std::{env, error::Error, fs, process};
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = Config::build(&args).unwrap_or_else(|err| {
-        print!("Problem parsing arguments: {err}\n");
+        eprintln!("Problem parsing arguments: {err}\n");
         process::exit(1);
     });
 
@@ -12,7 +12,7 @@ fn main() {
     println!("In file {}", config.file_path);
 
     if let Err(e) = run(config) {
-        println!("Application Error: {e}");
+        eprintln!("Application Error: {e}");
         process::exit(1);
     }
 }
